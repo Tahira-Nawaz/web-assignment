@@ -31,4 +31,4 @@ jobs:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: Tahira-rg
         template: web.bicep
-        parameters: maian.parameters.json
+        parameters: main.parameters.json

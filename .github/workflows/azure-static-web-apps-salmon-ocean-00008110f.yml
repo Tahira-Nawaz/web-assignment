@@ -9,8 +9,7 @@ on:
     branches:
       - master
 env:
-  RESOURCE-GROUP: tahira1
-  LOCATION: eastus2
+
   TEMPLATE-FILE: main.bicep
   PARAMETERS: main.parameters.json
   SUBSCRIPTION-ID: eeb9dfdd-9c17-44c3-a4a0-7529399ce200

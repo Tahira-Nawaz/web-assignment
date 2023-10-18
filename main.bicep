@@ -1,5 +1,5 @@
 targetScope = 'subscription'
-param resourcegroup string = 'tahira'
+param resourcegroup string = 'tahira-rg'
 param env string = 'info'
 param tag string 
 param name string

@@ -1,6 +1,6 @@
 
 param name string
-param location string = resourceGroup().location
+param location string = 'eastus2'
 param sku string
 param skucode string
 param repositoryUrl string

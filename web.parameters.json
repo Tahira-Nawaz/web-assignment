@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "name": {
-            "value": "tahirawebdeploymenttest4343"
+            "value": "az400-webapp-tahiratest"
         },
         "location": { 
             "value": "eastus2"

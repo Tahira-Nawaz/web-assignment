@@ -14,7 +14,7 @@ env:
   TEMPLATE-FILE: web.bicep
   PARAMETERS: web.parameters.json
   SUBSCRIPTION-ID: eeb9dfdd-9c17-44c3-a4a0-7529399ce200
-  WEBAPP-NAME: az400-webapp-tahiratest      
+  WEBAPP-NAME: az400-webapp-tahira6test      
 
 jobs:
   build_and_deploy_job:

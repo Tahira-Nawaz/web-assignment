@@ -9,12 +9,12 @@ on:
     branches:
       - master
 env:
-  RESOURCE-GROUP: tahira
+  RESOURCE-GROUP: tahira1
   LOCATION: eastus2
-  TEMPLATE-FILE: web.bicep
-  PARAMETERS: web.parameters.json
+  TEMPLATE-FILE: main.bicep
+  PARAMETERS: main.parameters.json
   SUBSCRIPTION-ID: eeb9dfdd-9c17-44c3-a4a0-7529399ce200
-  WEBAPP-NAME: az400-webapp-tahira6test      
+     
 
 jobs:
   build_and_deploy_job:

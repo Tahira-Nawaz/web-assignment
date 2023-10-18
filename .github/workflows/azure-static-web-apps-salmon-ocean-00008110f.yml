@@ -3,11 +3,17 @@ name: Azure Static Web Apps CI/CD
 on:
   push:
     branches:
-      - master
+      - none
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
-      - master
+      - none
+env:
+  RESOURCE-GROUP: tahira
+  LOCATION: eastus2
+  TEMPLATE-FILE: .azure/bicep/webapp.bicep
+  SUBSCRIPTION-ID: eeb9dfdd-9c17-44c3-a4a0-7529399ce200
+  WEBAPP-NAME: az400-webapp-tahiratest      
 
 jobs:
   build_and_deploy_job:

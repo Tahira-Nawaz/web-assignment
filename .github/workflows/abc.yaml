@@ -2,11 +2,7 @@ name: Create environment
 
 on: 
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-  workflow_dispatch:
-
+    branches: [workflow_dispatch ]
 jobs:
   create-environment:
     runs-on: ubuntu-latest

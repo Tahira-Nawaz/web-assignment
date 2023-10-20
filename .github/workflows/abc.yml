@@ -44,8 +44,8 @@ jobs:
     - name: Azure CLI token  
       uses: Azure/cli@1.0.4
       with:
-        # inlineScript:
-        run: |  
+        inlineScript: 
+        # run: |  
            token= $(az staticwebapp secrets list --name ${{ env.WEBAPP-NAME  }} --query "properties.apiKey") 
            echo "$token"
            echo "::set-env name=DEPLOYMENT_TOKEN::$token"

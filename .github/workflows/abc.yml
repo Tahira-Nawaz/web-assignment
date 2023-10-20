@@ -44,29 +44,16 @@ jobs:
     #   with:
     #     app-name: ${{ env.WEBAPP-NAME  }}
     #     package: .net-app
-    # - name: Azure CLI token  
-    #   # uses: Azure/cli@1.0.4
-    #   shell: bash
-    #   # with:
-    #     #   inlineScript: 
-    #   run: |  
-    #     token= $(az staticwebapp secrets list --name ${{ env.WEBAPP-NAME  }} --query "properties.apiKey") 
-    #     echo "API_KEY=$token" >> $GITHUB_ENV 
-    #     echo ${{ env.API_KEY }}
-    - name: Set and Retrieve Github ENV variables
+    - name: Azure CLI token  
+      # uses: Azure/cli@1.0.4
       shell: bash
-      run: |
+      # with:
+        #   inlineScript: 
+      run: |  
+        token= $(az staticwebapp secrets list --name ${{ env.WEBAPP-NAME  }} --query "properties.apiKey") 
+        echo "API_KEY=$token"  
+ 
 
-          # define variables      
-          tests=16
-          failures=2
-
-          # set them as GitHub ENV variables
-          echo "Tests=$tests" >> $GITHUB_ENV
-          echo "Failures=$failures" >> $GITHUB_ENV
-
-          # retrieve these GitHub ENV variables
-          echo "${{ env.Failures }} out of ${{ env.Tests }} tests failed on CI"
     # - name: Build And Deploy
     #   id: builddeploy
     #   uses: Azure/static-web-apps-deploy@v1

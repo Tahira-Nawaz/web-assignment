@@ -38,4 +38,3 @@ resource name_appsettings 'Microsoft.Web/staticSites/config@2021-01-15' = {
   properties: appSettings
 }
 
-

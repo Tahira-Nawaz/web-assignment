@@ -30,47 +30,40 @@ jobs:
       with:
         inlineScript: az group create -n ${{ env.RESOURCE-GROUP }} -l ${{ env.LOCATION }}
 
-    - name: Generate Deployment Token
-      run: |
-        # Use Azure CLI to generate the deployment token
-        TOKEN=$(az rest --method post --uri "/subscriptions/${{ secrets.subscriptionId }}/resourceGroups/${{ env.RESOURCE-GROUP }}/providers/Microsoft.Web/staticApps/${{ env.WEBAPP-NAME }}/token/generate" --query "token" -o tsv)
-        echo "::set-env name=DEPLOYMENT_TOKEN::$TOKEN"
-      env:
-        AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - name: Deploy to Azure Static Web App
-      run: |
-        # Use Azure CLI to deploy to Azure Static Web App using the generated token
-        az staticwebapp up --name ${{ env.WEBAPP-NAME }} --location ${{ env.LOCATION }} --token $DEPLOYMENT_TOKEN
-      env:
-        DEPLOYMENT_TOKEN: ${{ secrets.DEPLOYMENT_TOKEN }}
-
-    # - name: Deploy Bicep file
-    #   uses: azure/arm-deploy@v1
-    #   with:
-    #     subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
-    #     resourceGroupName: ${{ env.RESOURCE-GROUP }}
-    #     template: web1.bicep
-    #     parameters: main1.parameters.json
+    - name: Deploy Bicep file
+      uses: azure/arm-deploy@v1
+      with:
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+        resourceGroupName: ${{ env.RESOURCE-GROUP }}
+        template: web1.bicep
+        parameters: main1.parameters.json
     # # Publish website to Azure App Service (WebApp)
     # - name: Publish Website to WebApp
     #   uses: Azure/static-web-apps-deploy@v1
     #   with:
     #     app-name: ${{ env.WEBAPP-NAME  }}
     #     package: .net-app
+    - name: Azure CLI Create resource group  
+      uses: Azure/cli@1.0.4
+      with:
+        # inlineScript:
+        run: |  
+           token= $(az staticwebapp secrets list --name ${{ env.WEBAPP-NAME  }} --query "properties.apiKey") 
+           echo "$token"
+           echo "::set-env name=DEPLOYMENT_TOKEN::$token"
 
-
-    # - name: Build And Deploy
-    #   id: builddeploy
-    #   uses: Azure/static-web-apps-deploy@v1
-    #   with:
-    #     app-name: ${{ env.WEBAPP-NAME  }}
-    #     # creds: ${{ secrets.AZURE_CREDENTIALS }}
-    #     repo_token: ${{ secrets.GITHUB_TOKEN }}
-    #     action: "upload"
-    #     ###### Repository/Build Configurations - These values can be configured to match you app requirements. ######
-    #     # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-    #     app_location: ${{ env.APP_LOCATION }}
-    #     api_location: ${{ env.API_LOCATION }}
-    #     app_artifact_location: ${{ env.APP_ARTIFACT_LOCATION }}
-    #     # skip_deploy_on_missing_secrets: true
+    - name: Build And Deploy
+      id: builddeploy
+      uses: Azure/static-web-apps-deploy@v1
+      with:
+        app-name: ${{ env.WEBAPP-NAME  }}
+        # creds: ${{ secrets.AZURE_CREDENTIALS }}
+        azure_static_web_apps_api_token: ${{ env.DEPLOYMENT_TOKEN }}
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        action: "upload"
+        ###### Repository/Build Configurations - These values can be configured to match you app requirements. ######
+        # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
+        app_location: ${{ env.APP_LOCATION }}
+        api_location: ${{ env.API_LOCATION }}
+        app_artifact_location: ${{ env.APP_ARTIFACT_LOCATION }}
+        # skip_deploy_on_missing_secrets: true

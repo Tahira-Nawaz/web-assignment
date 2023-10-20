@@ -31,7 +31,7 @@ jobs:
     - name: Deploy Bicep file
       uses: azure/arm-deploy@v1
       with:
-        app-name: ${{ env.WEBAPP-NAME  }}
+        appname: ${{ env.WEBAPP-NAME  }}
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ env.RESOURCE-GROUP }}
         template: web1.bicep

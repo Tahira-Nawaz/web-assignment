@@ -1,5 +1,5 @@
 
-param name string
+param appname string
 param location string = 'eastus2'
 param sku string
 param skucode string
@@ -14,7 +14,7 @@ param resourceTags object
 param appSettings object
 
 resource app 'Microsoft.Web/staticSites@2021-01-15' = {
-  name: name
+  name: appname
   location: location
   tags: resourceTags
   properties: {

@@ -44,14 +44,14 @@ jobs:
     #   with:
     #     app-name: ${{ env.WEBAPP-NAME  }}
     #     package: .net-app
-    - name: Azure CLI token  
-      # uses: Azure/cli@1.0.4
-      # with:
+    # - name: Azure CLI token  
+    #   # uses: Azure/cli@1.0.4
+    #   # with:
         
-      #   inlineScript: 
-      run: |  
-        token= $(az staticwebapp secrets list --name ${{ env.WEBAPP-NAME  }} --query "properties.apiKey") 
-           echo "API_KEY=$token" >> $GITHUB_ENV 
+    #   #   inlineScript: 
+    #   run: |  
+    #     token= $(az staticwebapp secrets list --name ${{ env.WEBAPP-NAME  }} --query "properties.apiKey") 
+    #        echo "API_KEY=$token" >> $GITHUB_ENV 
 
     - name: Build And Deploy
       id: builddeploy

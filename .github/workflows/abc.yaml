@@ -34,7 +34,7 @@ jobs:
       uses: azure/arm-deploy@v1
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
-        resourceGroupName: Tahira-rg
+        resourceGroupName: ${{ env.RESOURCE-GROUP }}
         template: web1.bicep
         parameters: main1.parameters.json
     # # Publish website to Azure App Service (WebApp)

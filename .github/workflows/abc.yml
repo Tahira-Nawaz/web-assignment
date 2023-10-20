@@ -31,9 +31,12 @@ jobs:
     - name: Deploy Bicep file
       uses: azure/arm-deploy@v1
       with:
+        app-name: ${{ env.WEBAPP-NAME  }}
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ env.RESOURCE-GROUP }}
         template: web1.bicep
+        # parameters: 'webAppName=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
+        # failOnStdErr: false  
         parameters: main1.parameters.json
     # # Publish website to Azure App Service (WebApp)
     # - name: Publish Website to WebApp

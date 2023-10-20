@@ -51,7 +51,7 @@ jobs:
         #   inlineScript: 
       run: |  
         token= $(az staticwebapp secrets list --name ${{ env.WEBAPP-NAME  }} --query "properties.apiKey") 
-        echo "API_KEY=$token"  
+  
  
 
     # - name: Build And Deploy

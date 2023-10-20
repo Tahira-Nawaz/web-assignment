@@ -50,9 +50,9 @@ jobs:
       # with:
         #   inlineScript: 
       run: |  
-        az staticwebapp secrets list --name ${{ env.WEBAPP-NAME  }} --query "properties.apiKey"
-  
- 
+        token= az staticwebapp secrets list --name ${{ env.WEBAPP-NAME  }} --query "properties.apiKey"
+        echo "API_KEY=$token" >> $GITHUB_ENV 
+        echo ${{ env.API_KEY }}
 
     # - name: Build And Deploy
     #   id: builddeploy

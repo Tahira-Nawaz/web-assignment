@@ -9,7 +9,7 @@ env:
   APP_LOCATION: "/" # location of your client code
   API_LOCATION: "api" # location of your api source code - optional
   APP_ARTIFACT_LOCATION: "build" # location of client code build output
-  API_KEY: 
+
 jobs:
   create-environment:
     runs-on: ubuntu-latest
@@ -48,6 +48,7 @@ jobs:
         token= az staticwebapp secrets list --name ${{ env.WEBAPP-NAME  }} --query "properties.apiKey"
         echo "API_KEY=$token" >> $GITHUB_ENV
         echo "new value" 
+        echo "API_KEY=$token" 
         echo ${{ env.API_KEY }}
 
 

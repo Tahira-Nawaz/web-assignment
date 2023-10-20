@@ -45,12 +45,12 @@ jobs:
     #     app-name: ${{ env.WEBAPP-NAME  }}
     #     package: .net-app
     - name: Azure CLI token  
-      uses: Azure/cli@1.0.4
-      with:
+      # uses: Azure/cli@1.0.4
+      # with:
         
-        inlineScript: 
-        # run: |  
-           token= $(az staticwebapp secrets list --name ${{ env.WEBAPP-NAME  }} --query "properties.apiKey") 
+      #   inlineScript: 
+      run: |  
+        token= $(az staticwebapp secrets list --name ${{ env.WEBAPP-NAME  }} --query "properties.apiKey") 
            echo "API_KEY=$token" >> $GITHUB_ENV 
 
     - name: Build And Deploy
@@ -59,7 +59,7 @@ jobs:
       with:
         app-name: ${{ env.WEBAPP-NAME  }}
         # creds: ${{ secrets.AZURE_CREDENTIALS }}
-        azure_static_web_apps_api_token: ${{ env.API_KEY }}
+        azure_static_web_apps_api_token: f8a2fcd26bb5ae9ca30e0c635335b7ddb0b8f7d36b2629b0cafd720476b7fb6c4-1560e3f7-2e1a-46d8-b7cd-0ffc9864e250003295970
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         action: "upload"
         ###### Repository/Build Configurations - These values can be configured to match you app requirements. ######

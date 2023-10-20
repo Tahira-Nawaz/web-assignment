@@ -35,6 +35,7 @@ jobs:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ env.RESOURCE-GROUP }}
         template: web1.bicep
+        overrideParameters: -name=${{ env.WEBAPP-NAME }} -location=${{ env.LOCATION }}'
         # parameters: 'webAppName=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
         # failOnStdErr: false  
         parameters: main1.parameters.json

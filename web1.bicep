@@ -12,7 +12,8 @@ param apiLocation string
 param appArtifactLocation string
 param resourceTags object
 param appSettings object
-resource name_resource 'Microsoft.Web/staticSites@2021-01-15' = {
+param azure_static_web_apps_api_token string = 'c938ab775887dc8d9e54ad762369b8111cb4182d02bb273ec15853cd78d42c8e4-83570ffd-7731-4aeb-9180-c72ab17f3953010254505'
+resource app 'Microsoft.Web/staticSites@2021-01-15' = {
   name: name
   location: location
   tags: resourceTags
@@ -32,7 +33,9 @@ resource name_resource 'Microsoft.Web/staticSites@2021-01-15' = {
   }
 }
 resource name_appsettings 'Microsoft.Web/staticSites/config@2021-01-15' = {
-  parent: name_resource
+  parent: app
   name: 'appsettings'
   properties: appSettings
 }
+
+

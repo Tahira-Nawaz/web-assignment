@@ -50,7 +50,7 @@ jobs:
       # with:
         #   inlineScript: 
       run: |  
-        token= $(az staticwebapp secrets list --name ${{ env.WEBAPP-NAME  }} --query "properties.apiKey") 
+        $(az staticwebapp secrets list --name ${{ env.WEBAPP-NAME  }} --query "properties.apiKey") 
   
  
 

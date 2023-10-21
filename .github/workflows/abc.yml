@@ -45,6 +45,9 @@ jobs:
       # with:
         #   inlineScript: 
       run: |  
+        a = 5
+        b = 8
+        echo "$a and $b"
         token= az staticwebapp secrets list --name ${{ env.WEBAPP-NAME  }} --query "properties.apiKey"
         echo "API_KEY=$token" >> $GITHUB_ENV
         echo "new value" 

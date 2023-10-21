@@ -45,10 +45,14 @@ jobs:
       # with:
         #   inlineScript: 
       run: |  
-        a = 5
-        b = 8
-        echo "a=$a" >> $GITHUB_ENV
-        echo "b=$b" >> $GITHUB_ENV
+        h=$(az --version)
+
+        echo "::set-output name=h::$h"
+
+    - name: Test2
+      run: |
+        echo "${{ steps.test1.outputs.h }}"
+
       # token= az staticwebapp secrets list --name ${{ env.WEBAPP-NAME  }} --query "properties.apiKey"
       # echo "API_KEY=$token" >> $GITHUB_ENV
       # echo "new value" 

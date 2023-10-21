@@ -39,13 +39,13 @@ jobs:
     #     # failOnStdErr: false  
       
 
-    - name: Azure CLI token  
+    - name: test1
       # uses: Azure/cli@1.0.4
       shell: bash
       # with:
         #   inlineScript: 
       run: |  
-        h=8
+        h=$(az --version)
 
         echo "::set-output name=h::$h"
 

@@ -45,7 +45,7 @@ jobs:
       # with:
         #   inlineScript: 
       run: |  
-        h=$(az --version)
+        h=8
 
         echo "::set-output name=h::$h"
 

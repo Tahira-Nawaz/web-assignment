@@ -47,8 +47,8 @@ jobs:
       run: |  
         a = 5
         b = 8
-        echo "$a"
-        echo "$a"
+        echo "a=$a" >> $GITHUB_ENV
+        echo "b=$b" >> $GITHUB_ENV
       # token= az staticwebapp secrets list --name ${{ env.WEBAPP-NAME  }} --query "properties.apiKey"
       # echo "API_KEY=$token" >> $GITHUB_ENV
       # echo "new value" 

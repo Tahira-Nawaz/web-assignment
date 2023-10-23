@@ -53,11 +53,11 @@ jobs:
     #     echo "${{env.RESOURCE-GROUP}}"
     - name: Set color
       id: color-selector
-      run: echo "SELECTED_COLOR=green" >> "$GITHUB_OUTPUT"
-    - name: Get color
-      env:
-        SELECTED_COLOR: ${{ steps.color-selector.outputs.SELECTED_COLOR }} 
-      run: echo "SELECTED_COLOR = $SELECTED_COLOR" >> $GITHUB_ENV
+      run: echo "SELECTED_COLOR=green" >> "$GITHUB_ENV"
+    # - name: Get color
+    #   env:
+    #     SELECTED_COLOR: ${{ steps.color-selector.outputs.SELECTED_COLOR }} 
+    #   run: echo "SELECTED_COLOR = $SELECTED_COLOR" >> $GITHUB_ENV
     - name: Get color output
       run: |  
         echo "${{env.RESOURCE-GROUP}}"

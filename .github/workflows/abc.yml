@@ -57,8 +57,6 @@ jobs:
         echo "new"
         echo "${{env.SELECTED_COLOR}}" 
 
-
-
     - name: Build And Deploy
       env: 
         Deployment_token1: ${{ steps.token.outputs.Deployment_token }} 
@@ -67,7 +65,7 @@ jobs:
       with:
         app-name: ${{ env.WEBAPP-NAME  }}
         # creds: ${{ secrets.AZURE_CREDENTIALS }}
-        azure_static_web_apps_api_token: ${{env.Deployment_token1}}" 
+        azure_static_web_apps_api_token: ${{env.Deployment_token1}}
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         action: "upload"
         ###### Repository/Build Configurations - These values can be configured to match you app requirements. ######

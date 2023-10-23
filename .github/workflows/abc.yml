@@ -39,19 +39,26 @@ jobs:
     #     # failOnStdErr: false  
       
 
-    - name: test1
-      # uses: Azure/cli@1.0.4
-      shell: bash
-      # with:
-        #   inlineScript: 
-      run: |  
-        h=2
-        b=3
+    # - name: test1
+    #   # uses: Azure/cli@1.0.4
+    #   shell: bash
+    #   # with:
+    #     #   inlineScript: 
+    #   run: |  
+    #     h=2
+    #     b=3
 
-        echo "$h plus  $b equalto 5"
-        echo "a=$h" >> $GITHUB_ENV
-        echo ${{ env.a }}
-        echo "${{env.RESOURCE-GROUP}}"
+    #     echo "$h plus  $b equalto 5"
+    #     echo "a=$h" >> $GITHUB_ENV
+    #     echo "${{env.RESOURCE-GROUP}}"
+    - name: Set color
+      id: color-selector
+      run: echo "SELECTED_COLOR=green" >> "$GITHUB_OUTPUT"
+    - name: Get color
+      env:
+        SELECTED_COLOR: ${{ steps.color-selector.outputs.SELECTED_COLOR }}
+      run: echo "The selected color is $SELECTED_COLOR"
+
     # - name: Test2
     #   run: |
     #     echo "${{ steps.test1.outputs.h }}"

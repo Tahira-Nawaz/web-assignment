@@ -45,13 +45,13 @@ jobs:
       # with:
         #   inlineScript: 
       run: |  
-        h=$(az --version)
+        h=2
 
-        echo "::set-output name=h::$h"
+        echo "$h"
 
-    - name: Test2
-      run: |
-        echo "${{ steps.test1.outputs.h }}"
+    # - name: Test2
+    #   run: |
+    #     echo "${{ steps.test1.outputs.h }}"
 
       # token= az staticwebapp secrets list --name ${{ env.WEBAPP-NAME  }} --query "properties.apiKey"
       # echo "API_KEY=$token" >> $GITHUB_ENV

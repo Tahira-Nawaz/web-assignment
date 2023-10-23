@@ -59,7 +59,8 @@ jobs:
         SELECTED_COLOR: ${{ steps.color-selector.outputs.SELECTED_COLOR }} 
       run: echo "SELECTED_COLOR = $SELECTED_COLOR" >> $GITHUB_ENV
     - name: Get color output
-      run: echo "${{env.SELECTED_COLOR}}" 
+      run: |  
+        echo "${{env.SELECTED_COLOR}}" 
 
     # - name: Test2
     #   run: |

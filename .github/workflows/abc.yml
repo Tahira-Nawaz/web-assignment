@@ -51,9 +51,9 @@ jobs:
         Deployment_token1: ${{ steps.token.outputs.Deployment_token }} 
       run: |  
         echo ${{ env.RESOURCE-GROUP }}
-        echo "token is ${{ env.Deployment_token }} "
+        echo token is ${{ env.Deployment_token }} 
         echo "new"
-        echo "${{env.SELECTED_COLOR}}" 
+        echo ${{env.SELECTED_COLOR}}
 
     - name: Build And Deploy
       id: builddeploy

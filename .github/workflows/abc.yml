@@ -60,6 +60,8 @@ jobs:
       run: echo "SELECTED_COLOR = $SELECTED_COLOR" >> $GITHUB_ENV
     - name: Get color output
       run: |  
+        echo "${{env.RESOURCE-GROUP}}"
+        echo "new"
         echo "${{env.SELECTED_COLOR}}" 
 
     # - name: Test2

@@ -23,20 +23,20 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Azure CLI Create resource group  
-      uses: Azure/cli@1.0.4
-      with:
-        inlineScript: az group create -n ${{ env.RESOURCE-GROUP }} -l ${{ env.LOCATION }}
+    # - name: Azure CLI Create resource group  
+    #   uses: Azure/cli@1.0.4
+    #   with:
+    #     inlineScript: az group create -n ${{ env.RESOURCE-GROUP }} -l ${{ env.LOCATION }}
 
-    - name: Deploy Bicep file
-      uses: azure/arm-deploy@v1
-      with:
+    # - name: Deploy Bicep file
+    #   uses: azure/arm-deploy@v1
+    #   with:
         
-        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
-        resourceGroupName: ${{ env.RESOURCE-GROUP }}
-        template: web1.bicep
-        parameters: 'name=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
-        # failOnStdErr: false  
+    #     subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+    #     resourceGroupName: ${{ env.RESOURCE-GROUP }}
+    #     template: web1.bicep
+    #     parameters: 'name=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
+    #     # failOnStdErr: false  
       
     - name: Get token
       id: token
@@ -47,10 +47,11 @@ jobs:
       run: echo "SELECTED_COLOR=green" >> "$GITHUB_ENV"
 
     - name: Get color output
-      # env: 
-      #   Deployment_token1: ${{ steps.token.outputs.Deployment_token }} 
+      env: 
+        Deployment_token1: ${{ steps.token.outputs.Deployment_token }} 
       run: |  
         echo "token is ${{ steps.token.outputs.Deployment_token }} "
+        echo "token1 is $Deployment_token1 
         echo "new"
         echo "${{env.SELECTED_COLOR}}" 
 

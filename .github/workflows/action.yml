@@ -46,15 +46,14 @@ jobs:
         echo "Deployment=$token" >> $GITHUB_ENV
         token=$(az staticwebapp secrets list --name ${{ env.WEBAPP-NAME  }} --query properties.apiKey)
         echo "Deployment_token1=$token" >> $GITHUB_OUTPUT
-        echo "FOO=a" >> $GITHUB_ENV
     - name: Get token output
       run: |  
-        echo ${{ env.FOO }}
+        echo ${{ env.RESOURCE-GROUP }}
         echo "new token is"
         echo ${{ env.Deployment }} 
         echo "new token output is"
-        echo ${{ steps.token.outputs.Deployment_token1 }}
-
+        echo "deploymenttoken=${{ steps.token.outputs.Deployment_token1 }}" >> $GITHUB_ENV
+        
 
     # - name: Build And Deploy
     #   id: builddeploy

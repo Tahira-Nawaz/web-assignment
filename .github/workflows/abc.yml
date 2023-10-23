@@ -9,7 +9,6 @@ env:
   APP_LOCATION: "/" # location of your client code
   API_LOCATION: "api" # location of your api source code - optional
   APP_ARTIFACT_LOCATION: "build" # location of client code build output
-  Deployment_token: ${{ steps.token.outputs. }}
 
 jobs:
   create-environment:

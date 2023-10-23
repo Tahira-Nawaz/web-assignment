@@ -53,7 +53,7 @@ jobs:
         Deployment_token1: ${{ steps.token.outputs.Deployment_token }} 
       run: |  
         
-        echo "${{env.Deployment_token1}}" 
+        echo "token is ${{env.Deployment_token1}}" 
         echo "new"
         echo "${{env.SELECTED_COLOR}}" 
 

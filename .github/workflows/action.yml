@@ -53,7 +53,9 @@ jobs:
         echo ${{ env.Deployment }} 
         echo "new token output is"
         echo "deploymenttoken=${{ steps.token.outputs.Deployment_token1 }}" >> $GITHUB_ENV
-        
+    - name: Get token output
+      run: |  
+        echo ${{ env.deploymenttoken }}       
 
     # - name: Build And Deploy
     #   id: builddeploy

@@ -49,7 +49,9 @@ jobs:
         b=3
 
         echo "$h plus  $b equalto 5"
-
+        echo "a=$h" >> $GITHUB_ENV
+        echo ${{ env.a }}
+        echo "${{env.RESOURCE-GROUP}}"
     # - name: Test2
     #   run: |
     #     echo "${{ steps.test1.outputs.h }}"

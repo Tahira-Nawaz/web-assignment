@@ -5,7 +5,7 @@ env:
   LOCATION: westeurope
   TEMPLATE-FILE: web1.bicep
   SUBSCRIPTION-ID: ${{ secrets.subscriptionId }}
-  WEBAPP-NAME: "az400yy-webapp-tahira00test"
+  WEBAPP_NAME: "az400yy-webapp-tahira00test"
   APP_LOCATION: "/" # location of your client code
   API_LOCATION: "api" # location of your api source code - optional
   APP_ARTIFACT_LOCATION: "build" # location of client code build output

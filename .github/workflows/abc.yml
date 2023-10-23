@@ -41,16 +41,16 @@ jobs:
     - name: Get token
       id: token
       run: | 
-        token=az staticwebapp secrets list --name ${{ env.WEBAPP-NAME  }} --query properties.apiKey
-        echo Deployment_token=$(token) >> $GITHUB_ENV
+        token=$(az staticwebapp secrets list --name ${{ env.WEBAPP-NAME  }} --query properties.apiKey)
+        echo Deployment_token=$token >> $GITHUB_ENV
       # echo Deployment_token=$(az staticwebapp secrets list --name ${{ env.WEBAPP-NAME  }} --query properties.apiKey) >> $GITHUB_ENV
     - name: Set color
       id: color-selector
       run: echo "SELECTED_COLOR=green" >> "$GITHUB_ENV"
 
     - name: Get token output
-      env: 
-        Deployment_token1: ${{ steps.token.outputs.Deployment_token }} 
+      # env: 
+      #   Deployment_token1: ${{ steps.token.outputs.Deployment_token }} 
       run: |  
         echo ${{ env.RESOURCE-GROUP }}
         echo token is ${{ env.Deployment_token }} 

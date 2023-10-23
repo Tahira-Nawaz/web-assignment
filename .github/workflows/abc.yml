@@ -23,26 +23,20 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Get token
+    - name: Get Token
       id: token
       run: |
         token=$(az staticwebapp secrets list --name ${{ env.WEBAPP_NAME }} --query properties.apiKey)
         echo "Deployment=$token" >> $GITHUB_ENV
-
-    - name: Set Azure Static Web Apps API Token
-      run: |
-        deployment_token=${{ env.Deployment }}
-        echo "Setting Azure Static Web Apps API token..."
-        echo "azure_static_web_apps_api_token=$deployment_token" >> $GITHUB_ENV
-        echo ${{ secrets }}
-
+    
     - name: Build And Deploy
       id: builddeploy
       uses: Azure/static-web-apps-deploy@v1
       with:
-        azure_static_web_apps_api_token: ${{ env.Deployment }}
+        azure_static_web_apps_api_token: ${{ steps.token.outputs.Deployment }}
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         action: "upload"
         app_location: ${{ env.APP_LOCATION }}
         api_location: ${{ env.API_LOCATION }}
         app_artifact_location: ${{ env.APP_ARTIFACT_LOCATION }}
+

@@ -5,7 +5,7 @@ env:
   LOCATION: westeurope
   TEMPLATE-FILE: web1.bicep
   SUBSCRIPTION-ID: ${{ secrets.subscriptionId }}
-  WEBAPP-NAME: az400yy-webapp-tahira00test
+  WEBAPP-NAME: az400yy-webapp-tahira00test1
   APP_LOCATION: "/" # location of your client code
   API_LOCATION: "api" # location of your api source code - optional
   APP_ARTIFACT_LOCATION: "build" # location of client code build output
@@ -24,20 +24,20 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    # - name: Azure CLI Create resource group  
-    #   uses: Azure/cli@1.0.4
-    #   with:
-    #     inlineScript: az group create -n ${{ env.RESOURCE-GROUP }} -l ${{ env.LOCATION }}
+    - name: Azure CLI Create resource group  
+      uses: Azure/cli@1.0.4
+      with:
+        inlineScript: az group create -n ${{ env.RESOURCE-GROUP }} -l ${{ env.LOCATION }}
 
-    # - name: Deploy Bicep file
-    #   uses: azure/arm-deploy@v1
-    #   with:
+    - name: Deploy Bicep file
+      uses: azure/arm-deploy@v1
+      with:
         
-    #     subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
-    #     resourceGroupName: ${{ env.RESOURCE-GROUP }}
-    #     template: web1.bicep
-    #     parameters: 'name=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
-    #     # failOnStdErr: false  
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+        resourceGroupName: ${{ env.RESOURCE-GROUP }}
+        template: web1.bicep
+        parameters: 'name=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
+        # failOnStdErr: false  
       
     - name: Get token
       id: token

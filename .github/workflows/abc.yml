@@ -46,8 +46,9 @@ jobs:
         #   inlineScript: 
       run: |  
         h=2
+        b=3
 
-        echo "$h"
+        echo "$h plus  $b equalto 5"
 
     # - name: Test2
     #   run: |

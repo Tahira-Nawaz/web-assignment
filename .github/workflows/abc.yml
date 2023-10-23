@@ -49,9 +49,11 @@ jobs:
       run: echo "SELECTED_COLOR=green" >> "$GITHUB_ENV"
 
     - name: Get color output
+      env: 
+        Deployment_token1: ${{ steps.token.outputs.Deployment_token }} 
       run: |  
-        echo "${{env.Deployment_token}}" 
-        echo "${{ steps.token.outputs.Deployment_token }}"
+        
+        echo "${{env.Deployment_token1}}" 
         echo "new"
         echo "${{env.SELECTED_COLOR}}" 
 

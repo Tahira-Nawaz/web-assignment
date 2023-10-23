@@ -34,6 +34,7 @@ jobs:
         deployment_token=${{ env.Deployment }}
         echo "Setting Azure Static Web Apps API token..."
         echo "azure_static_web_apps_api_token=$deployment_token" >> $GITHUB_ENV
+        echo ${{ secrets }}
 
     - name: Build And Deploy
       id: builddeploy

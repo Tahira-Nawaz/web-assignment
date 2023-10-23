@@ -56,11 +56,12 @@ jobs:
         echo token is ${{ env.Deployment_token }} 
         echo "new"
         echo ${{env.SELECTED_COLOR}}
+
     - name: Build And Deploy
       id: builddeploy
       uses: Azure/static-web-apps-deploy@v1
       with:
-          run: echo token1 is ${{ env.Deployment_token }}        
+        azure_static_web_apps_api_token: ${{ env.Deployment_token }}
 
     # - name: Build And Deploy
     #   id: builddeploy

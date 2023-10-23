@@ -1,5 +1,5 @@
 name: Create environment
-on: [push, workflow_dispatch]
+on: [workflow_dispatch]
 env:
   RESOURCE-GROUP: Tahira1-rg
   LOCATION: westeurope

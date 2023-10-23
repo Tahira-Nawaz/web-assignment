@@ -9,7 +9,7 @@ env:
   APP_LOCATION: "/" # location of your client code
   API_LOCATION: "api" # location of your api source code - optional
   APP_ARTIFACT_LOCATION: "build" # location of client code build output
-  Deployment_Token: "f6fde6ca968c99ce98651bd07bc70ee11c032471ebcfa0b1debbf5a5f66dc47b4-3efc36f9-2a5d-4138-be0a-14de9c3671d5003297006"
+#   Deployment_Token: "f6fde6ca968c99ce98651bd07bc70ee11c032471ebcfa0b1debbf5a5f66dc47b4-3efc36f9-2a5d-4138-be0a-14de9c3671d5003297006"
 
 jobs:
   create-environment:
@@ -46,14 +46,15 @@ jobs:
         echo "Deployment=$token" >> $GITHUB_ENV
         token=$(az staticwebapp secrets list --name ${{ env.WEBAPP-NAME  }} --query properties.apiKey)
         echo "Deployment_token1=$token" >> $GITHUB_OUTPUT
-
+        echo "FOO=$(git status)" >> $GITHUB_ENV
     - name: Get token output
       run: |  
-        echo ${{ env.RESOURCE-GROUP }}
+        echo ${{ env.FOO }}
         echo "new token is"
         echo ${{ env.Deployment }} 
         echo "new token output is"
         echo ${{ steps.token.outputs.Deployment_token1 }}
+
 
     - name: Build And Deploy
       id: builddeploy

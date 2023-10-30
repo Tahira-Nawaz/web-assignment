@@ -1,15 +1,17 @@
-name: Create environment
-on: [workflow_dispatch]
+name: Deploy Static Web Application (Automation Workflow)
+
+on: [push, workflow_dispatch]
+
 env:
-  RESOURCE-GROUP: Tahira1-rg
+  RESOURCE-GROUP: Tahira_webapplication_rg 
   LOCATION: westeurope
   TEMPLATE-FILE: web1.bicep
   SUBSCRIPTION-ID: ${{ secrets.subscriptionId }}
-  WEBAPP-NAME: az400yy-webapp-tahira00test
+  WEBAPP-NAME: az4000-webapp-tahira00test1
   APP_LOCATION: "/" # location of your client code
   API_LOCATION: "api" # location of your api source code - optional
   APP_ARTIFACT_LOCATION: "build" # location of client code build output
-  Deployment_Token: "f6fde6ca968c99ce98651bd07bc70ee11c032471ebcfa0b1debbf5a5f66dc47b4-3efc36f9-2a5d-4138-be0a-14de9c3671d5003297006"
+
 
 jobs:
   create-environment:
@@ -24,47 +26,49 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    # - name: Azure CLI Create resource group  
-    #   uses: Azure/cli@1.0.4
-    #   with:
-    #     inlineScript: az group create -n ${{ env.RESOURCE-GROUP }} -l ${{ env.LOCATION }}
+    - name: Azure CLI Create resource group  
+      uses: Azure/cli@1.0.4
+      with:
+        inlineScript: az group create -n ${{ env.RESOURCE-GROUP }} -l ${{ env.LOCATION }}
 
-    # - name: Deploy Bicep file
-    #   uses: azure/arm-deploy@v1
-    #   with:
-        
-    #     subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
-    #     resourceGroupName: ${{ env.RESOURCE-GROUP }}
-    #     template: web1.bicep
-    #     parameters: 'name=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
-    #     # failOnStdErr: false  
-      
-    - name: Get token
+    - name: Deploy Bicep file
+      uses: azure/arm-deploy@v1
+      with:  
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+        resourceGroupName: ${{ env.RESOURCE-GROUP }}
+        template: web1.bicep
+        parameters: 'name=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
+       
+    - name: Get Deployment_token 
       id: token
       run: | 
         token=$(az staticwebapp secrets list --name ${{ env.WEBAPP-NAME  }} --query properties.apiKey)
-        echo "Deployment=$token" >> $GITHUB_ENV
+        echo "Deployment=$token" >> $GITHUB_ENV 
+        ######  above command save token value into env var with quotation mark ...and quotation mark will generate an error in publishing code######
         token=$(az staticwebapp secrets list --name ${{ env.WEBAPP-NAME  }} --query properties.apiKey)
         echo "Deployment_token1=$token" >> $GITHUB_OUTPUT
 
-    - name: Get token output
+    - name: Convert Deployment_token into ENV Var
       run: |  
-        echo ${{ env.RESOURCE-GROUP }}
-        echo "new token is"
-        echo ${{ env.Deployment }} 
-        echo "new token output is"
-        echo ${{ steps.token.outputs.Deployment_token1 }}
+        echo "token value is $${{ env.Deployment }}"
+        echo "Again override env.Deployment into env var for removing quotation mark "
+        echo "dt=${{ env.Deployment }}" >> $GITHUB_ENV
+        echo "we  can also use output for saving token value into ENV var without quotation mark  "
+        echo "Deployment_Token=${{ steps.token.outputs.Deployment_token1 }}" >> $GITHUB_ENV
 
+    - name: Check Deployment_token output as ENV Var
+      run: |  
+        echo "token is ${{ env.Deployment_Token }}"
+        echo "token is ${{ env.dt }}"
+ 
     - name: Build And Deploy
       id: builddeploy
       uses: Azure/static-web-apps-deploy@v1
       with:
-        # azure_static_web_apps_api_token: ${{ env.Deployment }} 
         azure_static_web_apps_api_token: ${{ env.Deployment_Token }} 
+        # azure_static_web_apps_api_token: ${{ env.dt }} 
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         action: "upload"
-        ###### Repository/Build Configurations - These values can be configured to match you app requirements. ######
-        # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
         app_location: ${{ env.APP_LOCATION }}
         api_location: ${{ env.API_LOCATION }}
         app_artifact_location: ${{ env.APP_ARTIFACT_LOCATION }}

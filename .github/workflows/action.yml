@@ -38,11 +38,7 @@ jobs:
         resourceGroupName: ${{ env.RESOURCE-GROUP }}
         template: web1.bicep
         parameters: 'name=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
- 
-  deploy-code :
-    runs-on: ubuntu-latest
-    steps:
-       
+
     - name: Get Deployment_token 
       id: token
       run: | 
@@ -74,5 +70,5 @@ jobs:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         action: "upload"
         app_location: ${{ env.APP_LOCATION }}
-        api_location: ${{ env.API_LOCATION }}
-        app_artifact_location: ${{ env.APP_ARTIFACT_LOCATION }}
+        # api_location: ${{ env.API_LOCATION }}
+        # app_artifact_location: ${{ env.APP_ARTIFACT_LOCATION }}

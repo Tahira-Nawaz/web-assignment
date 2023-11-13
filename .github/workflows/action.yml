@@ -33,7 +33,7 @@ jobs:
 
     - name: Deploy Bicep file
       uses: azure/arm-deploy@v1
-      with:  
+      with: 
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ env.RESOURCE-GROUP }}
         template: web1.bicep
@@ -50,7 +50,7 @@ jobs:
 
     - name: Convert Deployment_token into ENV Var
       run: |  
-        echo "token value is $${{ env.Deployment }}"
+        echo "token value is ${{ env.Deployment }}"
         echo "Again override env.Deployment into env var for removing quotation mark "
         echo "dt=${{ env.Deployment }}" >> $GITHUB_ENV
         echo "we  can also use output for saving token value into ENV var without quotation mark  "

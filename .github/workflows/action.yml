@@ -4,7 +4,7 @@ on: [push, workflow_dispatch]
 
 env:
   RESOURCE-GROUP: Tahira_webapplication_rg 
-  LOCATION: westeurope
+  LOCATION: eastasia
   TEMPLATE-FILE: web1.bicep
   SUBSCRIPTION-ID: ${{ secrets.subscriptionId }}
   WEBAPP-NAME: az4000-webapp-marwan12126162

@@ -7,7 +7,7 @@ env:
   LOCATION: eastasia
   TEMPLATE-FILE: web1.bicep
   SUBSCRIPTION-ID: ${{ secrets.subscriptionId }}
-  WEBAPP-NAME: az4000-webapp-marwan12126162
+  WEBAPP-NAME: az4000-webapp-tahira
   APP_LOCATION: "/" # location of your client code
   API_LOCATION: "api" # location of your api source code - optional
   APP_ARTIFACT_LOCATION: "build" # location of client code build output
